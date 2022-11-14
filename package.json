@@ -1,0 +1,6 @@
+{
+  "name": "@fastly/remix-compute-js",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "Remix for Fastly Compute@Edge"
+}
