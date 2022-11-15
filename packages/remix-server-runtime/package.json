@@ -1,0 +1,40 @@
+{
+  "name": "@fastly/remix-server-runtime",
+  "version": "0.1.5",
+  "license": "MIT",
+  "description": "Remix Runtime for Fastly Compute@Edge",
+  "types": "./build/src/index.d.ts",
+  "main": "./build/src/index.js",
+  "exports": {
+    ".": "./build/src/index.js"
+  },
+  "peerDependencies": {
+    "@remix-run/server-runtime": "^1.7.5"
+  },
+  "dependencies": {
+    "@fastly/js-compute": "^0.5.12",
+    "@remix-run/server-runtime": "^1.7.5",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
+    "events": "^3.3.0",
+    "stream-browserify": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.9"
+  },
+  "scripts": {
+    "prepack": "npm run clean && npm run compile",
+    "compile": "tsc --build tsconfig.json",
+    "clean": "rm -rf build"
+  },
+  "files": [
+    "build/src/**/*.js",
+    "build/src/**/*.js.map",
+    "build/src/**/*.d.ts",
+    "build/src/**/*.d.ts.map",
+    "resources/**/*",
+    "LICENSE",
+    "README.md",
+    "SECURITY.md"
+  ]
+}
