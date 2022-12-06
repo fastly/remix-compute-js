@@ -55,7 +55,7 @@ using the bug report template.
 
 ### Security issues
 
-Please see our [SECURITY.md](./SECURITY.md) for guidance on reporting security-related issues.
+Please see our [SECURITY.md](https://github.com/fastly/remix-compute-js/blob/main/SECURITY.md) for guidance on reporting security-related issues.
 
 ## License
 
