@@ -2,6 +2,9 @@
 
 Deploy and serve your [Remix](https://remix.run/) website from Fastly's blazing-fast [Compute@Edge](https://developer.fastly.com/learning/compute/).
 
+> NOTE: This cannot currently be used as is, as it relies on a `serverBuildTarget` value that is not supported by Remix at this time.
+> A pull request has been submitted to Remix to support this value, and it will be usable once https://github.com/remix-run/remix/pull/4860 lands.
+
 ## Remix
 
 Remix is a popular JavaScript-based full stack web framework that is designed to allow the developer to focus on the
