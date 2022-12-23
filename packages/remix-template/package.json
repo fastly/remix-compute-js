@@ -10,8 +10,8 @@
     "start": "fastly compute serve"
   },
   "dependencies": {
-    "@fastly/remix-server-runtime": "^0.1.5",
-    "@fastly/remix-server-adapter": "^0.1.5",
+    "@fastly/remix-server-runtime": "^0.2.1",
+    "@fastly/remix-server-adapter": "^0.2.1",
     "@remix-run/react": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
