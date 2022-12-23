@@ -12,7 +12,7 @@
     "@remix-run/server-runtime": "^1.7.5"
   },
   "dependencies": {
-    "@fastly/js-compute": "^0.5.12",
+    "@fastly/js-compute": "^1.0.1",
     "@remix-run/server-runtime": "^1.7.5",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",

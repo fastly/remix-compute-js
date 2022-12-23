@@ -1,5 +1,4 @@
 const path = require("path");
-const webpack = require("webpack");
 
 module.exports = {
   entry: "./src/index.js",
@@ -22,26 +21,6 @@ module.exports = {
         test: /\.(txt|html)/,
         type: "asset/source",
       },
-      {
-        // asset/source exports the source code of the asset.
-        resourceQuery: /staticText/,
-        type: "asset/source",
-      },
-      {
-        // asset/inline exports the raw bytes of the asset.
-        // We base64 encode them here
-        resourceQuery: /staticBinary/,
-        type: "asset/inline",
-        generator: {
-          /**
-           * @param {Buffer} content
-           * @returns {string}
-           */
-          dataUrl: content => {
-            return content.toString('base64');
-          },
-        }
-      },
     ],
   },
   plugins: [
@@ -56,5 +35,13 @@ module.exports = {
       "events": require.resolve("events/"),
       "stream": require.resolve("stream-browserify"),
     }
-  }
+  },
+  externals: [
+    ({request,}, callback) => {
+      if (/^fastly:.*$/.test(request)) {
+        return callback(null, 'commonjs ' + request);
+      }
+      callback();
+    }
+  ],
 };
