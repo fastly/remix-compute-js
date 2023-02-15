@@ -1,9 +1,14 @@
 /** @type {import('@remix-run/dev').AppConfig} */
 module.exports = {
-  serverBuildTarget: "fastly-compute-js",
-  devServerBroadcastDelay: 10000, // Adjust this if this is too short
+  devServerBroadcastDelay: 1000,
   ignoredRouteFiles: ["**/.*"],
-  // The following are the default values, feel free to uncomment and make adjustments as necessary
+  server: "./server.js",
+  serverConditions: ["worker"],
+  serverDependenciesToBundle: "all",
+  serverMainFields: ["browser", "module", "main"],
+  serverMinify: true,
+  serverModuleFormat: "esm",
+  serverPlatform: "neutral",
   // appDirectory: "app",
   // assetsBuildDirectory: "public/build",
   // serverBuildPath: "build/index.js",
