@@ -9,4 +9,4 @@ name = "remix-compute-js-app"
 service_id = ""
 
 [scripts]
-  build = "npx @fastly/compute-js-static-publish --build-static --suppress-framework-warnings && npm exec webpack && npm exec js-compute-runtime ./bin/index.js ./bin/main.wasm"
+build = "npm run build"
