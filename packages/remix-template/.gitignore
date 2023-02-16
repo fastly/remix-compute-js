@@ -10,4 +10,5 @@ node_modules
 /pkg
 # @fastly/compute-js-static-publish
 /src/statics.js
+/src/statics.d.ts
 /src/static-content
