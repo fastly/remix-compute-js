@@ -7,7 +7,7 @@
     "build:fastly": "compute-js-static-publish --build-static --suppress-framework-warnings && webpack && js-compute-runtime ./bin/index.js ./bin/main.wasm",
     "deploy": "fastly compute publish",
     "dev:remix": "remix watch",
-    "dev:fastly": "fastly compute serve --watch --verbose --watch-dir=build",
+    "dev:fastly": "fastly compute serve --watch",
     "dev": "run-p \"dev:*\"",
     "start": "fastly compute serve"
   },
