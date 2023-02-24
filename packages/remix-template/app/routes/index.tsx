@@ -13,7 +13,7 @@ export default function Index() {
       </p>
       <p>
         If you already have a Remix application that you'd like to move to Compute@Edge, see
-        our <a target="_blank" href="https://github.com/fastly/remix-compute-js/blob/main/MIGRATING.md">Migration Guide</a>.
+        our <a target="_blank" href="https://github.com/fastly/remix-compute-js/blob/main/MIGRATING.md">migration guide</a>.
       </p>
       <p>
         To learn more about Remix, visit some pages provided by Remix:
@@ -36,7 +36,7 @@ export default function Index() {
         </li>
       </ul>
       <p>
-        The Compute@Edge Adapter for Remix is provided as part of <a target="_blank" href="https://developer.fastly.com/labs/">Fastly Labs</a>&mdash;where Edge computing meets the cutting edge.
+        The Compute@Edge Adapter for Remix is provided as part of <a target="_blank" href="https://developer.fastly.com/labs/">Fastly Labs</a>: where edge computing meets the cutting edge.
         Visit Fastly Labs for other exciting projects we provide under this program.
       </p>
       <p>
