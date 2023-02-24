@@ -22,6 +22,12 @@
   "devDependencies": {
     "@types/node": "^18.11.9"
   },
+  "homepage": "https://github.com/fastly/remix-compute-js/tree/main/packages/remix-server-runtime",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fastly/remix-compute-js.git",
+    "directory": "packages/react-server-runtime"
+  },
   "scripts": {
     "prepack": "npm run clean && npm run compile",
     "compile": "tsc --build tsconfig.json",

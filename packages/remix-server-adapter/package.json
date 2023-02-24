@@ -18,6 +18,12 @@
     "compile": "tsc --build tsconfig.json",
     "clean": "rm -rf build"
   },
+  "homepage": "https://github.com/fastly/remix-compute-js/tree/main/packages/remix-server-adapter",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fastly/remix-compute-js.git",
+    "directory": "packages/react-server-adapter"
+  },
   "files": [
     "build/src/**/*.js",
     "build/src/**/*.js.map",
