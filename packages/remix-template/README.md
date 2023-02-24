@@ -7,7 +7,7 @@
 Prerequisites:
 
 - Node >= 16.13
-- [Fastly CLI](https://developer.fastly.com/learning/tools/cli) >= 4.1
+- [Fastly CLI](https://developer.fastly.com/learning/tools/cli) >= 7.0
 
 You will be running two processes during development:
 
