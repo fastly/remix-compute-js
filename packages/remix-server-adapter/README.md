@@ -1,8 +1,9 @@
 # Remix Adapter for Fastly Compute@Edge
 
-An adapter that allows the Compute@Edge JavaScript entry point program to start Remix.
-This adapter package we have created is designed to be used with Fastly Compute@Edge alongside
-[`@fastly/compute-js-static-publish`](https://github.com/fastly/compute-js-static-publish).
+An adapter that allows the Compute@Edge JavaScript entry point program to start Remix.  This adapter
+package we have created is designed to be used with Fastly Compute@Edge, and currently uses
+[`@fastly/compute-js-static-publish`](https://github.com/fastly/compute-js-static-publish)
+behind the scenes to include resources into the Wasm package bundle.
 
 (`@fastly/compute-js-static-publish` is set up automatically for you if you set up your Remix
 project using [`remix-template`](/packages/remix-template).)
