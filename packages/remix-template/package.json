@@ -4,7 +4,8 @@
   "scripts": {
     "build": "npm run build:remix && npm run build:fastly",
     "build:remix": "remix build",
-    "build:fastly": "compute-js-static-publish --build-static --suppress-framework-warnings && webpack && js-compute-runtime ./bin/index.js ./bin/main.wasm",
+    "prebuild:fastly": "compute-js-static-publish --build-static --suppress-framework-warnings && webpack",
+    "build:fastly": "js-compute-runtime ./bin/index.js ./bin/main.wasm",
     "deploy": "fastly compute publish",
     "dev:remix": "remix watch",
     "dev:fastly": "fastly compute serve --watch",
