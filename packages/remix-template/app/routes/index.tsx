@@ -16,7 +16,7 @@ export default function Index() {
         our <a target="_blank" href="https://github.com/fastly/remix-compute-js/blob/main/MIGRATING.md">migration guide</a>.
       </p>
       <p>
-        To learn more about Remix, visit some pages provided by Remix:
+        To learn more about Remix, visit some pages:
       </p>
       <ul>
         <li>
