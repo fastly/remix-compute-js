@@ -10,33 +10,47 @@ project using [`remix-template`](/packages/remix-template).)
 
 ## Usage
 
-The simplest usage is the `createEventHandler` function, which simply needs to be passed the
-`staticAssets` object exported from `./statics`. This file is generated automatically by
-`@fastly/compute-js-static-publish`.
+The simplest usage is the `createEventHandler` function.
+This function needs to be passed the following parameters:
+
+- `build`, obtained by loading `/build/index.js`
+- `server`, obtained by calling `getServer()`, exported from `./statics`
+
+> HINT: `./statics` is generated automatically by `@fastly/compute-js-static-publish`.
 
 ```js
 /// <reference types="@fastly/js-compute" />  
-import { createEventHandler } from '@fastly/remix-server-adapter';  
-import { staticAssets } from './statics';  
-  
-addEventListener("fetch", createEventHandler({ staticAssets }));
+import { createEventHandler } from '@fastly/remix-server-adapter';
+import { moduleAssets, getServer } from './statics';
+
+/** @type {import('@remix-run/server-runtime').ServerBuild} */
+const build = moduleAssets.getAsset('/build/index.js').getStaticModule();
+
+/** @type {import('@fastly/compute-js-static-publish').PublisherServer} */
+const server = getServer();
+
+addEventListener("fetch", createEventHandler({ build, server }));
 ```
 
-If you need more granular control over the `ServerBuild` module to use with Remix, or whether to handle static assets,
-you may use the lower-level `createEventHandler` and `handleAsset` functions:
+If you need more granular control over the `ServerBuild` module to use with Remix, or whether/how to handle static assets,
+you may use the lower-level `createRequestHandler` and `handleAsset` functions:
 
 ```js
 /// <reference types="@fastly/js-compute" />  
 import { createRequestHandler, handleAsset } from '@fastly/remix-server-adapter';  
-import { staticAssets } from './statics';
+import { moduleAssets, getServer } from './statics';
 
-/** @type {import('@remix-run/server-runtime').ServerBuild} */  
-const build = staticAssets.getAsset('/build/index.js').module;  
+/** @type {import('@remix-run/server-runtime').ServerBuild} */
+const build = moduleAssets.getAsset('/build/index.js').getStaticModule();
+
+/** @type {import('@fastly/compute-js-static-publish').PublisherServer} */
+const server = getServer();
+
 const requestHandler = createRequestHandler({build});  
  
 addEventListener("fetch", (event) => event.respondWith(handleRequest(event)));  
 async function handleRequest(event) {  
-  let response = await handleAsset(event, staticAssets);  
+  let response = await handleAsset(event, build, server);  
  
   if (!response) {  
     response = requestHandler(event);  
