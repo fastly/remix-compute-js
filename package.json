@@ -3,17 +3,18 @@
   "license": "MIT",
   "private": true,
   "description": "Remix for Fastly Compute@Edge",
-  "version": "0.2.1",
+  "version": "2.0.0-beta.0",
   "workspaces": [
     "packages/remix-server-runtime",
     "packages/remix-server-adapter"
   ],
   "devDependencies": {
-    "@remix-run/react": "^1.8.0",
-    "@remix-run/server-runtime": "^1.8.0",
-    "@types/react": "^18.0.25",
-    "@types/react-dom": "^18.0.9",
+    "@remix-run/react": "^1.17.1",
+    "@remix-run/server-runtime": "^1.17.1",
+    "@types/react": "^18.2.9",
+    "@types/react-dom": "^18.2.4",
+    "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "typescript": "^4.9.3"
+    "typescript": "^5.0.0"
   }
 }

@@ -3,7 +3,7 @@
  * Licensed under the MIT license. See LICENSE file for details.
  */
 
-import type { StaticAssets } from "@fastly/compute-js-static-publish";
+import type { PublisherServer } from "@fastly/compute-js-static-publish";
 
 import type { AppLoadContext, ServerBuild } from "@fastly/remix-server-runtime";
 import { createRequestHandler as createRemixRequestHandler } from "@fastly/remix-server-runtime";
@@ -23,10 +23,40 @@ export type RequestHandler = ReturnType<typeof createRequestHandler>;
  * Generates a Response that would serve a static asset corresponding to the URL requested
  * by the passed-in FetchEvent.
  * @param event { FetchEvent }
- * @param staticAssets { StaticAssets }
+ * @param build { ServerBuild }
+ * @param server { PublisherServer }
  */
-export async function handleAsset(event: FetchEvent, staticAssets: StaticAssets): Promise<Response | null> {
-  return staticAssets.serveAssetForEvent(event, '/public');
+export async function handleAsset(
+  event: FetchEvent,
+  build: ServerBuild,
+  server: PublisherServer,
+): Promise<Response | null> {
+
+  const request = event.request;
+  const requestPathname = new URL(request.url).pathname;
+
+  const asset = server.getMatchingAsset(requestPathname);
+  if (asset == null) {
+    return null;
+  }
+
+  let cache: 'extended' | 'never' | undefined = undefined;
+
+  if (process.env.NODE_ENV === "development") {
+    cache = 'never';
+  } else {
+    let assetpath = build.assets.url.split("/").slice(0, -1).join("/");
+    let requestpath = requestPathname.split("/").slice(0, -1).join("/");
+
+    if (requestpath.startsWith(assetpath)) {
+      // Assets are hashed by Remix so are safe to cache in the browser
+      cache = 'extended';
+    } else {
+      // Assets are not necessarily hashed in the request URL, so we cannot cache in the browser
+    }
+  }
+
+  return server.serveAsset(event.request, asset, { cache });
 }
 
 /**
@@ -34,9 +64,9 @@ export async function handleAsset(event: FetchEvent, staticAssets: StaticAssets)
  * Remix SSR response.
  */
 export function createRequestHandler({
-   build,
-   getLoadContext,
-   mode,
+  build,
+  getLoadContext,
+  mode,
 }: {
   build: ServerBuild;
   getLoadContext?: GetLoadContextFunction;
@@ -64,21 +94,22 @@ export function createRequestHandler({
 
 /**
  * Creates a simplified event handler that can be used on Fastly Compute@Edge.
- * @param staticAssets { StaticAssets }
+ * @param build { ServerBuild }
  * @param getLoadContext { GetLoadContextFunction }
- * @param mode
+ * @param serve { PublisherServer }
+ * @param mode { string }
  */
 export function createEventHandler({
-  staticAssets,
+  build,
   getLoadContext,
+  server,
   mode,
 }: {
-  staticAssets: StaticAssets;
+  build: ServerBuild;
   getLoadContext?: GetLoadContextFunction;
+  server: PublisherServer;
   mode?: string;
 }) {
-  const build = staticAssets.getAsset('/build/index.js').module as ServerBuild;
-
   let handleRequest = createRequestHandler({
     build,
     getLoadContext,
@@ -86,7 +117,7 @@ export function createEventHandler({
   });
 
   let handleEvent = async (event: FetchEvent) => {
-    let response = await handleAsset(event, staticAssets);
+    let response = await handleAsset(event, build, server);
 
     if (!response) {
       response = await handleRequest(event);
