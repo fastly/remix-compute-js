@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+## [2.0.1] - 2023-06-27
+
 ### Fixed
 
 - fix: Create Project command in README was missing `--` before flags passed to `create-remix`
@@ -23,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial official release
 
-[unreleased]: https://github.com/fastly/compute-js-static-publish/compare/v2.0.0...HEAD
+[unreleased]: https://github.com/fastly/compute-js-static-publish/compare/v2.0.1...HEAD
+[2.0.1]: https://github.com/fastly/compute-js-static-publish/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/fastly/compute-js-static-publish/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/fastly/remix-compute-js/releases/tag/v1.0.0
