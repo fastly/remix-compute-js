@@ -55,7 +55,7 @@ it is able to run on Fastly Compute@Edge.
 Initialize your new Remix application by running the following:
 
 ```shell
-npm create remix@latest ./new-app-js --template https://github.com/fastly/remix-compute-js/tree/main/packages/remix-template
+npm create remix@latest ./new-app-js -- --template https://github.com/fastly/remix-compute-js/tree/main/packages/remix-template
 ```
 
 ## Issues

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+### Fixed
+
+- fix: Create Project command in README was missing `--` before flags passed to `create-remix`
+
 ## [2.0.0] - 2023-06-19
 
 ### Updated
