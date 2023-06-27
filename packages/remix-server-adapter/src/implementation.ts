@@ -79,16 +79,13 @@ export function createRequestHandler({
 
     // HACK: Until js-compute supports AbortSignal on Request
     // we add a fake AbortSignal that doesn't actually abort
-    const request: any = event.request;
-    if (request.signal == null) {
-      request.signal = {
-        aborted: false,
-        addEventHandler: () => {},
-        removeEventHandler: () => {},
-      };
-    }
+    (Request.prototype as any).signal ??= {
+      aborted: false,
+      addEventListener: () => {},
+      removeEventListener: () => {},
+    };
 
-    return handleRequest(request, loadContext);
+    return handleRequest(event.request, loadContext);
   };
 }
 
