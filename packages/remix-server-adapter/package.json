@@ -1,6 +1,6 @@
 {
   "name": "@fastly/remix-server-adapter",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "license": "MIT",
   "description": "Remix Adapter for Fastly Compute@Edge",
   "types": "./build/src/index.d.ts",
@@ -11,7 +11,7 @@
   "dependencies": {
     "@fastly/compute-js-static-publish": "^5.0.0",
     "@fastly/js-compute": "^2.0.0",
-    "@fastly/remix-server-runtime": "^2.0.1"
+    "@fastly/remix-server-runtime": "^2.0.2"
   },
   "scripts": {
     "prepack": "npm run clean && npm run compile",
