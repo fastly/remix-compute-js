@@ -1,11 +1,12 @@
 {
   "private": true,
   "sideEffects": false,
+  "type": "module",
   "scripts": {
     "build": "npm run build:remix && npm run build:fastly",
     "build:remix": "remix build",
-    "prebuild:fastly": "compute-js-static-publish --build-static --suppress-framework-warnings && webpack",
-    "build:fastly": "js-compute-runtime ./bin/index.js ./bin/main.wasm",
+    "prebuild:fastly": "compute-js-static-publish --build-static --suppress-framework-warnings",
+    "build:fastly": "js-compute-runtime ./src/index.js ./bin/main.wasm",
     "deploy": "fastly compute publish",
     "dev:remix": "remix watch",
     "dev:fastly": "fastly compute serve --watch",
@@ -26,15 +27,9 @@
     "@remix-run/eslint-config": "*",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
-    "buffer": "^6.0.3",
-    "crypto-browserify": "^3.12.0",
     "eslint": "^8.23.1",
-    "events": "^3.3.0",
     "npm-run-all": "^4.1.5",
-    "stream-browserify": "^3.0.0",
-    "typescript": "^5.0.0",
-    "webpack": "^5.64.0",
-    "webpack-cli": "^4.9.1"
+    "typescript": "^5.0.0"
   },
   "engines": {
     "node": ">=16.13"

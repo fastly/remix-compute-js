@@ -4,7 +4,7 @@
  */
 
 /** @type {import('@fastly/compute-js-static-publish').StaticPublisherConfig} */
-module.exports = {
+export default {
   rootDir: './',
   excludeDirs: [ './node_modules', ],
   moduleAssetInclusionTest: function(path) {
