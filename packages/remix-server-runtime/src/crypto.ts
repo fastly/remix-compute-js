@@ -2,41 +2,56 @@
  * Copyright Fastly, Inc.
  * Licensed under the MIT license. See LICENSE file for details.
  */
-
-import * as crypto from 'crypto';
+import type { SignFunction, UnsignFunction } from "@remix-run/server-runtime";
 
 const encoder = new TextEncoder();
 
-async function calculateHash(value: string, secret: string) {
-
-  const key = encoder.encode(secret);
-  const signature = crypto.createHmac('sha256', key)
-    .update(value)
-    .digest();
-
-  return btoa(String.fromCharCode(...new Uint8Array(signature))).replace(
+export const sign: SignFunction = async (value: string, secret: string) => {
+  let key = await createKey(secret, ["sign"]);
+  let data = encoder.encode(value);
+  let signature = await crypto.subtle.sign("HMAC", key, data);
+  let hash = btoa(String.fromCharCode(...new Uint8Array(signature))).replace(
     /=+$/,
     ""
   );
 
-}
+  return value + "." + hash;
+};
 
-export async function sign(value: string, secret: string) {
-
-  let hash = await calculateHash(value, secret);
-  return value + '.' + hash;
-
-}
-
-export async function unsign(signed: string, secret: string) {
-
+export const unsign: UnsignFunction = async (signed: string, secret: string) => {
   let index = signed.lastIndexOf(".");
   let value = signed.slice(0, index);
-
   let hash = signed.slice(index + 1);
-  let expectedHash = await calculateHash(value, secret);
-  const valid = hash === expectedHash;
+
+  let key = await createKey(secret, ["verify"]);
+  let data = encoder.encode(value);
+  let signature = byteStringToUint8Array(atob(hash));
+  let valid = await crypto.subtle.verify("HMAC", key, signature, data);
 
   return valid ? value : false;
+};
 
+async function createKey(
+  secret: string,
+  usages: CryptoKey["usages"]
+): Promise<CryptoKey> {
+  let key = await crypto.subtle.importKey(
+    "raw",
+    encoder.encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    usages
+  );
+
+  return key;
+}
+
+function byteStringToUint8Array(byteString: string): Uint8Array {
+  let array = new Uint8Array(byteString.length);
+
+  for (let i = 0; i < byteString.length; i++) {
+    array[i] = byteString.charCodeAt(i);
+  }
+
+  return array;
 }
