@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@fastly/compute-js-static-publish": "^5.0.0",
-    "@fastly/js-compute": "^2.0.0",
+    "@fastly/js-compute": "^2.5.0",
     "@fastly/remix-server-runtime": "^3.0.0-beta.0"
   },
   "scripts": {

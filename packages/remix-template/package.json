@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@fastly/compute-js-static-publish": "^5.0.0",
-    "@fastly/js-compute": "^2.0.0",
+    "@fastly/js-compute": "^2.5.0",
     "@remix-run/dev": "*",
     "@remix-run/eslint-config": "*",
     "@types/react": "^18.2.0",
