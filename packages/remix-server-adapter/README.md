@@ -14,14 +14,14 @@ The simplest usage is the `createEventHandler` function.
 This function needs to be passed the following parameters:
 
 - `build`, obtained by loading `/build/index.js`
-- `server`, obtained by calling `getServer()`, exported from `./statics`
+- `server`, obtained by calling `getServer()`, exported from `./statics.js`
 
-> HINT: `./statics` is generated automatically by `@fastly/compute-js-static-publish`.
+> HINT: `./statics.js` is generated automatically by `@fastly/compute-js-static-publish`.
 
 ```js
 /// <reference types="@fastly/js-compute" />  
 import { createEventHandler } from '@fastly/remix-server-adapter';
-import { moduleAssets, getServer } from './statics';
+import { moduleAssets, getServer } from './statics.js';
 
 /** @type {import('@remix-run/server-runtime').ServerBuild} */
 const build = moduleAssets.getAsset('/build/index.js').getStaticModule();
@@ -38,7 +38,7 @@ you may use the lower-level `createRequestHandler` and `handleAsset` functions:
 ```js
 /// <reference types="@fastly/js-compute" />  
 import { createRequestHandler, handleAsset } from '@fastly/remix-server-adapter';  
-import { moduleAssets, getServer } from './statics';
+import { moduleAssets, getServer } from './statics.js';
 
 /** @type {import('@remix-run/server-runtime').ServerBuild} */
 const build = moduleAssets.getAsset('/build/index.js').getStaticModule();

@@ -36,8 +36,8 @@ to them in your source project, and then make the equivalent changes in the new 
 
 * Skip `/public/build/`.  This is a directory that is generated during the build step.
 
-* Depending on the dependencies used by your project, you may need to
-[add polyfills to run in Compute@Edge](https://developer.fastly.com/learning/compute/javascript/#module-bundling).
+* Depending on the dependencies used by your project, you may need to use module bundling and add polyfills to run in Compute@Edge.
+For details, see "Module bundling" in the template's [README](./packages/remix-template/README.md).
 
 # Modifying an existing Remix application for Compute@Edge <a name="modifying-an-existing-remix-app"></a>
 
@@ -53,7 +53,7 @@ npm install @fastly/remix-server-runtime @fastly/remix-server-adapter
 * Install the following development dependencies:
 
 ```shell
-npm install --save-dev @fastly/compute-js-static-publish @fastly/js-compute js-core npm-run-all webpack webpack-cli 
+npm install --save-dev @fastly/compute-js-static-publish @fastly/js-compute npm-run-all 
 ```
 
 * Uninstall the previous runtime, such as `@remix-run/node`.
@@ -68,7 +68,15 @@ npm uninstall @remix-run/node
 npm uninstall @remix-run/express
 ```
 
-* In `remix.config.js`, replace the value of the `serverBuildTarget` field with `"fastly-compute-js"`.
+* In `remix.config.js`, remove the `serverBuildTarget` field if it's set. Also, make sure the following values are set:
+```
+  serverConditions: ["worker"],
+  serverDependenciesToBundle: "all",
+  serverMainFields: ["browser", "module", "main"],
+  serverMinify: false,
+  serverModuleFormat: "esm",
+  serverPlatform: "neutral",
+```
 
 * In `remix.config.js`, set the value of the `devServerBroadcastDelay` field to `10000`.
 
@@ -80,6 +88,10 @@ npm uninstall @remix-run/express
 /pkg
 # @fastly/compute-js-static-publish
 /src/statics.js
+/src/statics.d.ts
+/src/statics-metadata.js
+/src/statics-metadata.d.ts
+/src/static-content
 ```
 
 * Create a `src/index.js` file with the following content:
@@ -87,9 +99,15 @@ npm uninstall @remix-run/express
 ```js
 /// <reference types="@fastly/js-compute" />
 import { createEventHandler } from '@fastly/remix-server-adapter';
-import { staticAssets } from './statics';
+import { moduleAssets, getServer } from './statics.js';
 
-addEventListener("fetch", createEventHandler({ staticAssets }));
+/** @type {import('@remix-run/server-runtime').ServerBuild} */
+const build = moduleAssets.getAsset('/build/index.js').getStaticModule();
+
+/** @type {import('@fastly/compute-js-static-publish').PublisherServer} */
+const server = getServer();
+
+addEventListener("fetch", createEventHandler({ build, server }));
 ```
 
 * Create a `fastly.toml` file with the following content:
@@ -106,108 +124,32 @@ name = "remix-compute-js-app"
 service_id = ""
   
 [scripts]
-build = "npx @fastly/compute-js-static-publish --build-static --suppress-framework-warnings && npm exec webpack && npm exec js-compute-runtime ./bin/index.js ./bin/main.wasm" 
+build = "npm run build" 
 ```
 
 * Create a `static-publish.rc.js` file with the following content:
 
 ```js
 /*
-* Copyright Fastly, Inc.
-* Licensed under the MIT license. See LICENSE file for details.
-*/
+ * Copyright Fastly, Inc.
+ * Licensed under the MIT license. See LICENSE file for details.
+ */
 
-const path = require("path");
-const publicDir = path.resolve(process.cwd());
-
-module.exports = {
-  publicDir: "./",
-  excludeDirs: ['./node_modules',],
-  includeDirs: ['./build', './public'],
-  staticDirs: ['./public/build'],
-  moduleTest: function (path) {
-    if (path.endsWith('/remix.config.js') || path.endsWith('/remix.config.mjs')) {
-      return true;
-    }
-    return path.indexOf('/build/') === 0 && !path.endsWith('.map');
+/** @type {import('@fastly/compute-js-static-publish').StaticPublisherConfig} */
+export default {
+  rootDir: './',
+  excludeDirs: [ './node_modules', ],
+  moduleAssetInclusionTest: function(path) {
+    if (path.startsWith('/build/') && !path.endsWith('.map')) { return 'static-import'; }
+    return false;
   },
-  excludeTest: function (path) {
-    if (path.startsWith(publicDir + '/remix.config.js') || path.endsWith(publicDir + '/remix.config.mjs')) {
-      return false;
-    }
-    if (path.startsWith(publicDir + '/build/') || path.startsWith(publicDir + '/public/')) {
-      return false;
-    }
-    return true;
+  contentAssetInclusionTest: function(path) {
+    if (path.startsWith('/public/')) { return true; }
+    return false;
   },
-  spa: false,
-  autoIndex: [],
-  autoExt: [],
-};
-```
-
-* Create a `webpack.config.js` file with the following content:
-
-```js
-const path = require("path");
-const webpack = require("webpack");
-
-module.exports = {
-  entry: "./src/index.js",
-  optimization: {
-    minimize: false,
+  server: {
+    publicDirPrefix: '/public',
   },
-  target: "webworker",
-  output: {
-    filename: "index.js",
-    path: path.resolve(__dirname, "bin"),
-    libraryTarget: "this",
-  },
-  module: {
-    // Asset modules are modules that allow the use asset files (fonts, icons, etc) 
-    // without additional configuration or dependencies.
-    rules: [
-      // asset/source exports the source code of the asset. 
-      // Usage: e.g., import notFoundPage from "./page_404.html"
-      {
-        test: /\.(txt|html)/,
-        type: "asset/source",
-      },
-      {
-        // asset/source exports the source code of the asset.
-        resourceQuery: /staticText/,
-        type: "asset/source",
-      },
-      {
-        // asset/inline exports the raw bytes of the asset.
-        // We base64 encode them here
-        resourceQuery: /staticBinary/,
-        type: "asset/inline",
-        generator: {
-          /**
-           * @param {Buffer} content
-           * @returns {string}
-           */
-          dataUrl: content => {
-            return content.toString('base64');
-          },
-        }
-      },
-    ],
-  },
-  plugins: [
-    // Polyfills go here.
-    // Used for, e.g., any cross-platform WHATWG, 
-    // or core nodejs modules needed for your application.
-  ],
-  resolve: {
-    fallback: {
-      "buffer": require.resolve("buffer/"),
-      "crypto": require.resolve("crypto-browserify"),
-      "events": require.resolve("events/"),
-      "stream": require.resolve("stream-browserify"),
-    }
-  }
 };
 ```
 
@@ -243,10 +185,14 @@ import type { EntryContext } from "@fastly/remix-server-runtime";
 ```json
 {
   "scripts": {
-    "build": "remix build",
+    "build": "npm run build:remix && npm run build:fastly",
+    "build:remix": "remix build",
+    "prebuild:fastly": "compute-js-static-publish --build-static --suppress-framework-warnings",
+    "build:fastly": "js-compute-runtime ./src/index.js ./bin/main.wasm",
+    "deploy": "fastly compute publish",
     "dev:remix": "remix watch",
     "dev:fastly": "fastly compute serve --watch",
-    "dev": "remix build && run-p \"dev:*\"",
+    "dev": "run-p \"dev:*\"",
     "start": "fastly compute serve"
   }
 }
@@ -278,5 +224,8 @@ export default function handleRequest(
   });
 }
 ```
+
+* Depending on the dependencies used by your project, you may need to use module bundling and add polyfills to run in Compute@Edge.
+For details, see "Module bundling" in the template's [README](./packages/remix-template/README.md).
 
 * Depending on your application, further changes may be necessary. Refer to `remix-template` as an example.

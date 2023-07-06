@@ -58,6 +58,15 @@ Initialize your new Remix application by running the following:
 npm create remix@latest ./new-app-js -- --template https://github.com/fastly/remix-compute-js/tree/main/packages/remix-template
 ```
 
+## Webpack
+
+Past versions of the template used Webpack. This was needed at the time since the Compute@Edge JavaScript SDK did not yet
+natively support signing and verifying crypto keys, and we used the 'crypto-browserify' polyfill to fill the gap. Starting
+with 3.0.0, we no longer need this, and Webpack and these polyfills have been removed from the template.
+
+There are cases where you may still want to use Webpack, such as if you want to replace global modules or use polyfills.
+For details, see "Module bundling" in the template's [README](./packages/remix-template/README.md).
+
 ## Issues
 
 If you encounter any non-security-related bug or unexpected behavior, please [file an issue][bug]
