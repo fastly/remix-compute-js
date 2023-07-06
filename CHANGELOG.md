@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+### Updated
+
+- Update to @fastly/js-computep@2.5.0
+- Use SubtleCrypto from JS SDK for cookie signing
+- Remove Webpack and crypto polyfill from template
+- Template now uses "type": "module"
+- Update Migration steps
+
+### Fixed
+
+- fix: specify full file path in file reference for use in projects with "type": "module"
+
 ## [2.0.2] - 2023-06-27
 
 ### Fixed
