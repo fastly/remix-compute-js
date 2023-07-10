@@ -13,15 +13,15 @@
     "start": "fastly compute serve"
   },
   "dependencies": {
-    "@fastly/remix-server-runtime": "^2.0.2",
     "@fastly/remix-server-adapter": "^2.0.2",
+    "@fastly/remix-server-runtime": "^2.0.2",
     "@remix-run/react": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@fastly/compute-js-static-publish": "^5.0.0",
-    "@fastly/js-compute": "^2.0.0",
+    "@fastly/js-compute": "^3.0.0",
     "@remix-run/dev": "*",
     "@remix-run/eslint-config": "*",
     "@types/react": "^18.2.0",
