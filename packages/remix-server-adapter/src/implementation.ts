@@ -15,7 +15,7 @@ import { createRequestHandler as createRemixRequestHandler } from "@fastly/remix
  * You can think of this as an escape hatch that allows you to pass
  * environment/platform-specific values through to your loader/action.
  */
-export type GetLoadContextFunction = (event: FetchEvent) => AppLoadContext;
+export type GetLoadContextFunction = (event: FetchEvent) => Promise<AppLoadContext> | AppLoadContext;
 
 export type RequestHandler = ReturnType<typeof createRequestHandler>;
 
@@ -74,8 +74,8 @@ export function createRequestHandler({
 }) {
   let handleRequest = createRemixRequestHandler(build, mode);
 
-  return (event: FetchEvent) => {
-    let loadContext = getLoadContext?.(event);
+  return async (event: FetchEvent) => {
+    let loadContext = await getLoadContext?.(event);
 
     // HACK: Until js-compute supports AbortSignal on Request
     // we add a fake AbortSignal that doesn't actually abort
