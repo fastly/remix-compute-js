@@ -60,7 +60,7 @@ export async function handleAsset(
 }
 
 /**
- * Returns a request handler for the Fastly Compute@Edge runtime that serves the
+ * Returns a request handler for the Fastly Compute runtime that serves the
  * Remix SSR response.
  */
 export function createRequestHandler({
@@ -90,7 +90,7 @@ export function createRequestHandler({
 }
 
 /**
- * Creates a simplified event handler that can be used on Fastly Compute@Edge.
+ * Creates a simplified event handler that can be used on Fastly Compute.
  * @param build { ServerBuild }
  * @param getLoadContext { GetLoadContextFunction }
  * @param serve { PublisherServer }

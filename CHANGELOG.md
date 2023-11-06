@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Remove Webpack and crypto polyfill from template
 - Template now uses "type": "module"
 - Update Migration steps
+- Apply "Compute" branding change.
 
 ### Fixed
 
