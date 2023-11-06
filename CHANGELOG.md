@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Updated
 
-- Update to @fastly/js-computep@2.5.0
+- Update to js-compute@^3.0.0 and compute-js-static-publish@^5.1.2
 - Use SubtleCrypto from JS SDK for cookie signing
 - Remove Webpack and crypto polyfill from template
 - Template now uses "type": "module"

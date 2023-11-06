@@ -9,8 +9,8 @@
     ".": "./build/src/index.js"
   },
   "dependencies": {
-    "@fastly/compute-js-static-publish": "^5.1.1",
-    "@fastly/js-compute": "^2.5.0",
+    "@fastly/compute-js-static-publish": "^5.1.2",
+    "@fastly/js-compute": "^3.0.0",
     "@fastly/remix-server-runtime": "^3.0.0-beta.0"
   },
   "scripts": {
