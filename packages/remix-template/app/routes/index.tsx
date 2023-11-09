@@ -9,10 +9,10 @@ export default function Index() {
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
       <h1>Congratulations!</h1>
       <p>
-        You’ve successfully created your <a target="_blank" href="https://remix.run/">Remix</a> project for <a target="_blank" href="https://developer.fastly.com/learning/compute/javascript/">Fastly Compute@Edge</a>.
+        You’ve successfully created your <a target="_blank" href="https://remix.run/">Remix</a> project for <a target="_blank" href="https://developer.fastly.com/learning/compute/javascript/">Fastly Compute</a>.
       </p>
       <p>
-        If you already have a Remix application that you'd like to move to Compute@Edge, see
+        If you already have a Remix application that you'd like to move to Compute, see
         our <a target="_blank" href="https://github.com/fastly/remix-compute-js/blob/main/MIGRATING.md">migration guide</a>.
       </p>
       <p>
@@ -36,7 +36,7 @@ export default function Index() {
         </li>
       </ul>
       <p>
-        The Compute@Edge Adapter for Remix is provided as part of <a target="_blank" href="https://developer.fastly.com/labs/">Fastly Labs</a>: where edge computing meets the cutting edge.
+        The Fastly Compute Adapter for Remix is provided as part of <a target="_blank" href="https://developer.fastly.com/labs/">Fastly Labs</a>: where edge computing meets the cutting edge.
         Visit Fastly Labs for other exciting projects we provide under this program.
       </p>
       <p>

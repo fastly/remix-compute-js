@@ -2,7 +2,7 @@
   "name": "remix-fastly-compute-js",
   "license": "MIT",
   "private": true,
-  "description": "Remix for Fastly Compute@Edge",
+  "description": "Remix for Fastly Compute",
   "version": "2.0.2",
   "workspaces": [
     "packages/remix-server-runtime",

@@ -37,7 +37,7 @@ Then refresh the same URL in your browser (no live reload for production builds)
 
 ## Deployment
 
-If you don't already have an account, then [create a Fastly Compute@Edge account here](https://www.fastly.com/signup/edge-compute).
+If you don't already have an account, then [create a Fastly Compute account here](https://www.fastly.com/signup/edge-compute).
 
 Once that's done, you should be able to deploy your app:
 
