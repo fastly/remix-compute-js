@@ -1,6 +1,6 @@
-# Remix on Compute@Edge
+# Remix on Fastly Compute
 
-Deploy and serve your [Remix](https://remix.run/) website from Fastly's blazing-fast [Compute@Edge](https://developer.fastly.com/learning/compute/).
+Deploy and serve your [Remix](https://remix.run/) website from Fastly's blazing-fast [Compute](https://developer.fastly.com/learning/compute/).
 
 ## Remix
 
@@ -12,7 +12,7 @@ user interface and work back through web standards to deliver a fast, slick, and
 The easiest way to get up and running is to use [Remix's CLI](https://remix.run/docs/en/v1/other-api/dev) to initialize your
 project, specifying `remix-template` as the template. See [using the template](#using-the-template) below.
 
-If you already have a Remix application that you'd like to move to Compute@Edge, see [MIGRATING.md](MIGRATING.md).
+If you already have a Remix application that you'd like to move to Fastly Compute, see [MIGRATING.md](MIGRATING.md).
 
 Once you have initialized your project, start the application:
 
@@ -38,17 +38,17 @@ This monorepo contains three projects:
 * [`@fastly/remix-server-runtime`](/packages/remix-server-runtime)
 
   A runtime that implements the interfaces defined in `@remix-run/server-runtime`. Allows
-the Remix framework to run on Fastly Compute@Edge.
+the Remix framework to run on Fastly Compute.
 
 * [`@fastly/remix-server-adapter`](/packages/remix-server-adapter)
 
-  An adapter that allows the Compute@Edge JavaScript entry point program to start Remix.
+  An adapter that allows the Compute JavaScript entry point program to start Remix.
 
 * [`remix-template`](/packages/remix-template)
 
   A template to be used with [`remix create`](https://remix.run/docs/en/v1/other-api/dev#remix-create)
 to initialize a Remix application. The template is configured with the above libraries so that
-it is able to run on Fastly Compute@Edge.
+it is able to run on Fastly Compute.
 
 ## Using the template
 

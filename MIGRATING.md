@@ -1,11 +1,11 @@
-# Migrating an existing Remix application for Compute@Edge
+# Migrating an existing Remix application for Compute
 
-If you already have a Remix application that you wish to move to Compute@Edge,
+If you already have a Remix application that you wish to move to Compute,
 the easiest way to do this is to create an empty Remix project using [`remix-template`](/packages/remix-template).
-This way, all the Compute@Edge-related dependencies will be installed for you, and the server adapter will be
+This way, all the Compute-related dependencies will be installed for you, and the server adapter will be
 created as part of the process as well.
 
-> NOTE: If you wish to modify your project directly instead, see the [Modifying an existing Remix application for Compute@Edge](#modifying-an-existing-remix-app) section below.
+> NOTE: If you wish to modify your project directly instead, see the [Modifying an existing Remix application for Fastly Compute](#modifying-an-existing-remix-app) section below.
 
 The general steps are as follows:
 
@@ -37,11 +37,11 @@ to them in your source project, and then make the equivalent changes in the new 
 * Skip `/public/build/`.  This is a directory that is generated during the build step.
 
 * Depending on the dependencies used by your project, you may need to
-[add polyfills to run in Compute@Edge](https://developer.fastly.com/learning/compute/javascript/#module-bundling).
+[add polyfills to run in Compute](https://developer.fastly.com/learning/compute/javascript/#module-bundling).
 
-# Modifying an existing Remix application for Compute@Edge <a name="modifying-an-existing-remix-app"></a>
+# Modifying an existing Remix application for Fastly Compute <a name="modifying-an-existing-remix-app"></a>
 
-If you'd rather modify your application in place to adapt it for Compute@Edge,
+If you'd rather modify your application in place to adapt it for Fastly Compute,
 perform the following general steps in your project's directory.
 
 * Install the following dependencies:
@@ -75,7 +75,7 @@ npm uninstall @remix-run/express
 * Modify `.gitignore` and add the following lines:
 
 ```gitignore
-# Fastly Compute@Edge
+# Fastly Compute
 /bin
 /pkg
 # @fastly/compute-js-static-publish
@@ -95,7 +95,7 @@ addEventListener("fetch", createEventHandler({ staticAssets }));
 * Create a `fastly.toml` file with the following content:
 
 ```toml
-# This file describes a Fastly Compute@Edge package. To learn more visit:
+# This file describes a Fastly Compute package. To learn more visit:
 # https://developer.fastly.com/reference/fastly-toml/
   
 authors = []

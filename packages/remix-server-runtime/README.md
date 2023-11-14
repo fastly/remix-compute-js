@@ -1,4 +1,4 @@
-# Remix Runtime for Fastly Compute@Edge
+# Remix Runtime for Fastly Compute
 
 This package implements the "Remix server runtime interface" that Remix runtime packages must conform to.
 

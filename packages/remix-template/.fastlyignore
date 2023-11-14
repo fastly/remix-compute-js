@@ -6,7 +6,7 @@
 /public
 # Remix app intermediate files
 /.cache
-# Fastly Compute@Edge output files
+# Fastly Compute output files
 /bin
 /pkg
 # misc files
