@@ -20,7 +20,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@fastly/compute-js-static-publish": "^5.0.0",
+    "@fastly/compute-js-static-publish": "^5.1.2",
     "@fastly/js-compute": "^3.0.0",
     "@remix-run/dev": "*",
     "@remix-run/eslint-config": "*",

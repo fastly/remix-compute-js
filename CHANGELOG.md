@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+### Updated
+
+- fix: Specify dependency of @fastly/compute-js-static-publish@^5.1.2,
+    which allows peerDependency of js-compute@3
+
 ## [2.1.0] - 2023-11-14
 
 ### Added
