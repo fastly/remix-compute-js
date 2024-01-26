@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+### Updated
+
+- Supports remix@2, and drops remix@1
+- Uses @fastly/compute-js-static-publish@6 to cleanly separate static manifest files
+
 ## [3.0.0] - 2024-01-26
 
 ### Updated
