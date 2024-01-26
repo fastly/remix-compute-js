@@ -13,7 +13,7 @@ export default function Index() {
       </p>
       <p>
         If you already have a Remix application that you'd like to move to Compute, see
-        our <a target="_blank" href="https://github.com/fastly/remix-compute-js/blob/main/MIGRATING.md">migration guide</a>.
+        our <a target="_blank" href="https://github.com/fastly/remix-compute-js/blob/v3/MIGRATING.md">migration guide</a>.
       </p>
       <p>
         To learn more about Remix, visit some pages:

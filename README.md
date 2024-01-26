@@ -2,7 +2,7 @@
 
 Deploy and serve your [Remix](https://remix.run/) website from Fastly's blazing-fast [Compute](https://developer.fastly.com/learning/compute/).
 
-NOTE: For now, this adapter has only been tested with remix@1.
+NOTE: Supports Remix@1. If you need Remix@2, use [Version 4 or newer](https://github.com/fastly/remix-compute-js/tree/main).
 
 ## Remix
 
@@ -57,7 +57,7 @@ it is able to run on Fastly Compute.
 Initialize your new Remix application by running the following:
 
 ```shell
-npm create remix@1 ./new-app-js -- --template https://github.com/fastly/remix-compute-js/tree/main/packages/remix-template
+npm create remix@1 ./new-app-js -- --template https://github.com/fastly/remix-compute-js/tree/v3/packages/remix-template
 ```
 
 ## Webpack
