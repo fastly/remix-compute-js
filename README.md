@@ -3,7 +3,7 @@
 Deploy and serve your [Remix](https://remix.run/) website from Fastly's blazing-fast [Compute](https://developer.fastly.com/learning/compute/).
 
 > NEW! This is for version 2 of Remix. If you need to use Remix version 1, then use
-> [version 3 of @fastly/remix-compute-js](https://github.com/fastly/remix-compute-js/tree/v3).
+> [@fastly/remix-compute-js@3](https://github.com/fastly/remix-compute-js/blob/v3/README.md).
 
 ## Remix
 
