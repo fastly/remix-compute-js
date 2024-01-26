@@ -15,9 +15,41 @@ import { createRequestHandler as createRemixRequestHandler } from "@fastly/remix
  * You can think of this as an escape hatch that allows you to pass
  * environment/platform-specific values through to your loader/action.
  */
-export type GetLoadContextFunction = (event: FetchEvent) => Promise<AppLoadContext> | AppLoadContext;
+export type GetLoadContextFunction = (
+  event: FetchEvent
+) => Promise<AppLoadContext> | AppLoadContext;
 
-export type RequestHandler = ReturnType<typeof createRequestHandler>;
+export type RequestHandler = (event: FetchEvent) => Promise<Response>;
+
+/**
+ * Returns a request handler for the Fastly Compute runtime that serves the
+ * Remix SSR response.
+ */
+export function createRequestHandler({
+  build,
+  getLoadContext,
+  mode,
+}: {
+  build: ServerBuild;
+  getLoadContext?: GetLoadContextFunction;
+  mode?: string;
+}): RequestHandler {
+  let handleRequest = createRemixRequestHandler(build, mode);
+
+  return async (event: FetchEvent) => {
+    let loadContext = await getLoadContext?.(event);
+
+    // HACK: Until js-compute supports AbortSignal on Request
+    // we add a fake AbortSignal that doesn't actually abort
+    (Request.prototype as any).signal ??= {
+      aborted: false,
+      addEventListener: () => {},
+      removeEventListener: () => {},
+    };
+
+    return handleRequest(event.request, loadContext);
+  };
+}
 
 /**
  * Generates a Response that would serve a static asset corresponding to the URL requested
@@ -57,36 +89,6 @@ export async function handleAsset(
   }
 
   return server.serveAsset(event.request, asset, { cache });
-}
-
-/**
- * Returns a request handler for the Fastly Compute runtime that serves the
- * Remix SSR response.
- */
-export function createRequestHandler({
-  build,
-  getLoadContext,
-  mode,
-}: {
-  build: ServerBuild;
-  getLoadContext?: GetLoadContextFunction;
-  mode?: string;
-}) {
-  let handleRequest = createRemixRequestHandler(build, mode);
-
-  return async (event: FetchEvent) => {
-    let loadContext = await getLoadContext?.(event);
-
-    // HACK: Until js-compute supports AbortSignal on Request
-    // we add a fake AbortSignal that doesn't actually abort
-    (Request.prototype as any).signal ??= {
-      aborted: false,
-      addEventListener: () => {},
-      removeEventListener: () => {},
-    };
-
-    return handleRequest(event.request, loadContext);
-  };
 }
 
 /**

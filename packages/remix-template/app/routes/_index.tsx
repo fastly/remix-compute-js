@@ -1,6 +1,14 @@
-import styles from "~/styles/index.css";
+import { LinksFunction, MetaFunction } from "@fastly/remix-server-runtime";
+import styles from "~/styles/_index.css";
 
-export function links() {
+export const meta: MetaFunction = () => {
+  return [
+    { title: "New Remix App" },
+    { name: "description", content: "Welcome to Remix!" },
+  ];
+};
+
+export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }];
 }
 
