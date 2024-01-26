@@ -2,7 +2,8 @@
 
 Deploy and serve your [Remix](https://remix.run/) website from Fastly's blazing-fast [Compute](https://developer.fastly.com/learning/compute/).
 
-> NEW! This is for version 2 of Remix. If you need to support version 1, then use version 3 of this library.
+> NEW! This is for version 2 of Remix. If you need to use Remix version 1, then use
+> [version 3 of @fastly/remix-compute-js](https://github.com/fastly/remix-compute-js/tree/v3).
 
 ## Remix
 
@@ -11,8 +12,9 @@ user interface and work back through web standards to deliver a fast, slick, and
 
 ## Usage
 
-The easiest way to get up and running is to use [Remix's CLI](https://remix.run/docs/en/v1/other-api/dev) to initialize your
-project, specifying `remix-template` as the template. See [using the template](#using-the-template) below.
+The easiest way to get up and running is to use [Remix's CLI](https://remix.run/docs/en/main/other-api/create-remix) to
+initialize your project, specifying `https://github.com/fastly/remix-compute-js/tree/main/packages/remix-template` as
+the template. See [using the template](#using-the-template) below.
 
 If you already have a Remix application that you'd like to move to Fastly Compute, see [MIGRATING.md](MIGRATING.md).
 
@@ -48,7 +50,7 @@ the Remix framework to run on Fastly Compute.
 
 * [`remix-template`](/packages/remix-template)
 
-  A template to be used with [`remix create`](https://remix.run/docs/en/v1/other-api/dev#remix-create)
+  A template to be used with [`remix create`](https://remix.run/docs/en/main/other-api/create-remix)
 to initialize a Remix application. The template is configured with the above libraries so that
 it is able to run on Fastly Compute.
 
