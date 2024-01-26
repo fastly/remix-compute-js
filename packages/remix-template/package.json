@@ -14,8 +14,8 @@
     "start": "fastly compute serve"
   },
   "dependencies": {
-    "@fastly/remix-server-runtime": "^3.0.0-beta.1",
-    "@fastly/remix-server-adapter": "^3.0.0-beta.1",
+    "@fastly/remix-server-runtime": "^3.0.0",
+    "@fastly/remix-server-adapter": "^3.0.0",
     "@remix-run/react": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

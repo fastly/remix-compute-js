@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+## [3.0.0] - 2024-01-26
+
 ### Updated
 
 - Use SubtleCrypto from JS SDK for cookie signing
@@ -17,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - fix: specify full file path in file reference for use in projects with "type": "module"
+- fix: rename .eslintrc config to cjs
 
 ## [2.1.1] - 2023-12-01
 
@@ -60,7 +63,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial official release
 
-[unreleased]: https://github.com/fastly/remix-compute-js/compare/v2.1.1...HEAD
+[unreleased]: https://github.com/fastly/remix-compute-js/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/fastly/remix-compute-js/compare/v2.1.0...v3.0.0
 [2.1.1]: https://github.com/fastly/remix-compute-js/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/fastly/remix-compute-js/compare/v2.0.2...v2.1.0
 [2.0.2]: https://github.com/fastly/remix-compute-js/compare/v2.0.1...v2.0.2
