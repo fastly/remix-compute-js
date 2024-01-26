@@ -2,7 +2,7 @@
 
 Deploy and serve your [Remix](https://remix.run/) website from Fastly's blazing-fast [Compute](https://developer.fastly.com/learning/compute/).
 
-NOTE: For now, this adapter has only been tested with remix@1.
+> NEW! This is for version 2 of Remix. If you need to support version 1, then use version 3 of this library.
 
 ## Remix
 
@@ -57,15 +57,12 @@ it is able to run on Fastly Compute.
 Initialize your new Remix application by running the following:
 
 ```shell
-npm create remix@1 ./new-app-js -- --template https://github.com/fastly/remix-compute-js/tree/main/packages/remix-template
+npm create remix@latest ./new-app-js -- --template https://github.com/fastly/remix-compute-js/tree/main/packages/remix-template
 ```
 
 ## Webpack
 
-Past versions of the template used Webpack. This was needed at the time since the Compute JavaScript SDK did not yet
-natively support signing and verifying crypto keys, and we used the 'crypto-browserify' polyfill to fill the gap. Starting
-with 3.0.0, we no longer need this, and Webpack and these polyfills have been removed from the template.
-
+Out of the box, this library does not use Webpack or polyfills to work under Fastly Compute.
 There are cases where you may still want to use Webpack, such as if you want to replace global modules or use polyfills.
 For details, see "Module bundling" in the template's [README](./packages/remix-template/README.md).
 

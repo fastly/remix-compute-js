@@ -9,11 +9,11 @@
     ".": "./build/src/index.js"
   },
   "peerDependencies": {
-    "@remix-run/server-runtime": "^1.17.1"
+    "@remix-run/server-runtime": "^2.5.1"
   },
   "dependencies": {
     "@fastly/js-compute": "^3.0.0",
-    "@remix-run/server-runtime": "^1.17.1"
+    "@remix-run/server-runtime": "^2.5.1"
   },
   "devDependencies": {
     "@types/node": "^18.11.9"
