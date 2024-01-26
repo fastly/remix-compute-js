@@ -6,6 +6,7 @@
 /** @type {import('@fastly/compute-js-static-publish').StaticPublisherConfig} */
 export default {
   rootDir: './',
+  staticContentRootDir: './static-publisher',
   excludeDirs: [ './node_modules', ],
   moduleAssetInclusionTest: function(path) {
     if (path.startsWith('/build/') && !path.endsWith('.map')) { return 'static-import'; }
