@@ -2,6 +2,8 @@
 
 Deploy and serve your [Remix](https://remix.run/) website from Fastly's blazing-fast [Compute](https://developer.fastly.com/learning/compute/).
 
+NOTE: For now, this adapter has only been tested with remix@1.
+
 ## Remix
 
 Remix is a popular JavaScript-based full stack web framework that is designed to allow the developer to focus on the
@@ -55,7 +57,7 @@ it is able to run on Fastly Compute.
 Initialize your new Remix application by running the following:
 
 ```shell
-npm create remix@latest ./new-app-js -- --template https://github.com/fastly/remix-compute-js/tree/main/packages/remix-template
+npm create remix@1 ./new-app-js -- --template https://github.com/fastly/remix-compute-js/tree/main/packages/remix-template
 ```
 
 ## Webpack
