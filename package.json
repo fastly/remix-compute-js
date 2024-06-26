@@ -9,7 +9,7 @@
     "packages/remix-server-adapter"
   ],
   "devDependencies": {
-    "@fastly/js-compute": "^3.0.0",
+    "@fastly/js-compute": "^3.16.0",
     "@remix-run/react": "^2.5.1",
     "@remix-run/server-runtime": "^2.5.1",
     "@types/react": "^18.2.9",
