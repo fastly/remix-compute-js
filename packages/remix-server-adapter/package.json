@@ -1,6 +1,6 @@
 {
   "name": "@fastly/remix-server-adapter",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "license": "MIT",
   "description": "Remix Adapter for Fastly Compute",
   "types": "./build/src/index.d.ts",
