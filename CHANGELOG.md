@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+## [4.0.2] - 2025-03-08
+
+### Fixed
+
+- Fixed type reference in typescript d.ts file
+- Update to mirror starter kit
+
 ## [4.0.1] - 2025-01-06
 
 ### Added
@@ -80,8 +87,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial official release
 
-[unreleased]: https://github.com/fastly/remix-compute-js/compare/v4.0.1...HEAD
-[4.0.0]: https://github.com/fastly/remix-compute-js/compare/v4.0.0...v4.0.1
+[unreleased]: https://github.com/fastly/remix-compute-js/compare/v4.0.2...HEAD
+[4.0.2]: https://github.com/fastly/remix-compute-js/compare/v4.0.1...v4.0.2
+[4.0.1]: https://github.com/fastly/remix-compute-js/compare/v4.0.0...v4.0.1
 [4.0.0]: https://github.com/fastly/remix-compute-js/compare/v3.0.0...v4.0.0
 [3.0.0]: https://github.com/fastly/remix-compute-js/compare/v2.1.0...v3.0.0
 [2.1.1]: https://github.com/fastly/remix-compute-js/compare/v2.1.0...v2.1.1
