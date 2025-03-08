@@ -2,11 +2,12 @@
 # https://developer.fastly.com/reference/fastly-toml/
 
 authors = []
-description = ""
+description = "Starter for Remix JavaScript framework"
 language = "javascript"
 manifest_version = 2
-name = "remix-compute-js-app"
+name = "Starter for Remix JavaScript framework"
 service_id = ""
 
 [scripts]
 build = "npm run build"
+post_init = "npm install"

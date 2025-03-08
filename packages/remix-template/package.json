@@ -14,8 +14,8 @@
     "start": "fastly compute serve"
   },
   "dependencies": {
-    "@fastly/remix-server-runtime": "^4.0.0",
     "@fastly/remix-server-adapter": "^4.0.0",
+    "@fastly/remix-server-runtime": "^4.0.0",
     "@remix-run/css-bundle": "*",
     "@remix-run/react": "*",
     "isbot": "^4.1.0",
@@ -23,6 +23,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@fastly/cli": "^10.14.0",
     "@fastly/compute-js-static-publish": "^6.0.0",
     "@fastly/js-compute": "^3.0.0",
     "@remix-run/dev": "*",
