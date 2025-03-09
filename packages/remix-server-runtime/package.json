@@ -1,6 +1,6 @@
 {
   "name": "@fastly/remix-server-runtime",
-  "version": "4.0.2",
+  "version": "4.1.0",
   "license": "MIT",
   "description": "Remix Runtime for Fastly Compute",
   "types": "./build/src/index.d.ts",
