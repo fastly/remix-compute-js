@@ -8,6 +8,15 @@ import type { PublisherServer } from "@fastly/compute-js-static-publish";
 import type { AppLoadContext, ServerBuild } from "@fastly/remix-server-runtime";
 import { createRequestHandler as createRemixRequestHandler } from "@fastly/remix-server-runtime";
 
+export type LoadContext = {
+  request: Request,
+  fastly: {
+    client: ClientInfo,
+    server: ServerInfo,
+    waitUntil(promise: Promise<any>): void;
+  },
+};
+
 /**
  * A function that returns the value to use as `context` in route `loader` and
  * `action` functions.
@@ -16,7 +25,8 @@ import { createRequestHandler as createRemixRequestHandler } from "@fastly/remix
  * environment/platform-specific values through to your loader/action.
  */
 export type GetLoadContextFunction = (
-  event: FetchEvent
+  event: FetchEvent,
+  context: LoadContext,
 ) => Promise<AppLoadContext> | AppLoadContext;
 
 export type RequestHandler = (event: FetchEvent) => Promise<Response>;
@@ -34,10 +44,20 @@ export function createRequestHandler({
   getLoadContext?: GetLoadContextFunction;
   mode?: string;
 }): RequestHandler {
-  let handleRequest = createRemixRequestHandler(build, mode);
+  const handleRequest = createRemixRequestHandler(build, mode);
 
   return async (event: FetchEvent) => {
-    let loadContext = await getLoadContext?.(event);
+    const context = {
+      request: event.request,
+      fastly: {
+        client: event.client,
+        server: event.server,
+        waitUntil: event.waitUntil.bind(event),
+      },
+    };
+    const loadContext: AppLoadContext = getLoadContext != null ?
+      await getLoadContext(event, context) :
+      context;
 
     // HACK: Until js-compute supports AbortSignal on Request
     // we add a fake AbortSignal that doesn't actually abort
