@@ -10,7 +10,7 @@ export {
   createCookieSessionStorage,
   createMemorySessionStorage,
   createSessionStorage,
-} from "./implementations";
+} from "./implementations.js";
 
 export {
   createRequestHandler,

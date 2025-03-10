@@ -5,9 +5,10 @@
 
 /// <reference types='@fastly/js-compute' />
 
-export type { GetLoadContextFunction, RequestHandler } from "./implementation";
 export {
+  type GetLoadContextFunction,
+  type RequestHandler,
   createEventHandler,
   createRequestHandler,
   handleAsset,
-} from "./implementation";
+} from "./implementation.js";

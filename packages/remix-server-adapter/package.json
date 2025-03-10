@@ -1,5 +1,6 @@
 {
   "name": "@fastly/remix-server-adapter",
+  "type": "module",
   "version": "4.1.0",
   "license": "MIT",
   "description": "Remix Adapter for Fastly Compute",
