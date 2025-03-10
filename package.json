@@ -3,7 +3,7 @@
   "license": "MIT",
   "private": true,
   "description": "Remix for Fastly Compute",
-  "version": "4.1.0",
+  "version": "5.0.0-alpha.0",
   "workspaces": [
     "packages/remix-server-runtime",
     "packages/remix-server-adapter"
