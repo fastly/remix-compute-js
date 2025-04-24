@@ -10,8 +10,8 @@
   ],
   "devDependencies": {
     "@fastly/js-compute": "^3.0.0",
-    "@remix-run/react": "^2.5.1",
-    "@remix-run/server-runtime": "^2.5.1",
+    "@remix-run/react": "^2.16.5",
+    "@remix-run/server-runtime": "^2.16.5",
     "@types/react": "^18.2.9",
     "@types/react-dom": "^18.2.4",
     "react": "^18.2.0",
