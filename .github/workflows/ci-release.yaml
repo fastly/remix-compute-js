@@ -15,7 +15,7 @@ jobs:
     needs: process-version
     uses: fastly/devex-reusable-workflows/.github/workflows/publish-javascript-npmjs-v1.yml@main
     with:
-      expected_pkg_name: "@fanoutio/eventstream"
+      expected_pkg_name: "remix-fastly-compute-js"
       expected_pkg_version: ${{ needs.process-version.outputs.version }}
       dist_tag: ${{ needs.process-version.outputs.dist_tag }}
       workspaces: true
