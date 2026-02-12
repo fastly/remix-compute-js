@@ -53,7 +53,7 @@ npm install @fastly/remix-server-runtime @fastly/remix-server-adapter
 * Install the following development dependencies:
 
 ```shell
-npm install --save-dev @fastly/compute-js-static-publish @fastly/js-compute npm-run-all 
+npm install --save-dev @fastly/compute-js-static-publish@6 @fastly/js-compute npm-run-all 
 ```
 
 * Uninstall the previous runtime, such as `@remix-run/node`.
@@ -99,7 +99,7 @@ npm uninstall @remix-run/express
 ```js
 /// <reference types="@fastly/js-compute" />
 import { createEventHandler } from '@fastly/remix-server-adapter';
-import { moduleAssets, getServer } from './statics.js';
+import { moduleAssets, getServer } from '../static-publisher/statics.js';
 
 /** @type {import('@remix-run/server-runtime').ServerBuild} */
 const build = moduleAssets.getAsset('/build/index.js').getStaticModule();
@@ -138,6 +138,7 @@ build = "npm run build"
 /** @type {import('@fastly/compute-js-static-publish').StaticPublisherConfig} */
 export default {
   rootDir: './',
+  staticContentRootDir: './static-publisher',
   excludeDirs: [ './node_modules', ],
   moduleAssetInclusionTest: function(path) {
     if (path.startsWith('/build/') && !path.endsWith('.map')) { return 'static-import'; }

@@ -14,9 +14,9 @@ The simplest usage is the `createEventHandler` function.
 This function needs to be passed the following parameters:
 
 - `build`, obtained by loading `/build/index.js`
-- `server`, obtained by calling `getServer()`, exported from `./statics.js`
+- `server`, obtained by calling `getServer()`, exported from `../static-publisher/statics.js`
 
-> HINT: `./statics.js` is generated automatically by `@fastly/compute-js-static-publish`.
+> HINT: `../static-publisher/statics.js` is generated automatically by `@fastly/compute-js-static-publish`.
 
 ```js
 /// <reference types="@fastly/js-compute" />  
