@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Updated
 
 - Release to npmjs using updated CI workflow and trusted publishing
+- Bump dependencies
+
+### Fixed
+- Corrected docs relating to static-publisher v6
 
 ## [4.1.0] - 2025-03-10
 
